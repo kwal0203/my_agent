@@ -1,12 +1,13 @@
-from llm import LLM
-from agent import Agent
-from tools_library import calculator, search_web
 import os
+
 from dotenv import load_dotenv
+
+from agent import Agent
+from llm import LLM
+from tools_library import calculator, search_web
 
 # Load environment variables from .env file
 load_dotenv()
-
 
 tools = [
     search_web,
@@ -24,4 +25,4 @@ llm = LLM(api_key=api_key)
 agent = Agent(llm, tools)
 
 # Run it
-agent.run("What's 1234 * 3, and then tell me who the president of the US is?")
+agent.run("What is the square root of 98765?")

@@ -34,13 +34,15 @@ class Agent:
                 action_line = [l for l in lines if l.startswith("Action:")][0]
                 input_line = [l for l in lines if l.startswith("Action Input:")][0]
 
+                tool_name = action_line.split("Action:")[1].strip()
+                tool_input = input_line.split("Action Input:")[1].strip()
+
                 print("--------------------------------")
                 print(f"action line: {action_line}")
                 print(f"input line:  {input_line}")
+                print(f"tool name:   {tool_name}")
+                print(f"tool input:  {tool_input}")
                 print("--------------------------------")
-
-                tool_name = action_line.split("Action:")[1].strip()
-                tool_input = input_line.split("Action Input:")[1].strip()
 
                 if tool_name in self.tools:
                     tool = self.tools[tool_name]

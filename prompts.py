@@ -1,4 +1,4 @@
-SYS_PROMPT ="""You are a helpful AI agent. You can use tools to help with user queries.
+SYS_PROMPT = """You are a helpful AI agent. You can use tools to help with user queries.
 
 Available tools:
 {tools_description}
