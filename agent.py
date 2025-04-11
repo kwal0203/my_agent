@@ -1,4 +1,5 @@
 from memory import Memory
+from prompts import SYS_PROMPT
 from tools_library import CalculatorInput, SearchInput
 
 
@@ -13,19 +14,7 @@ class Agent:
         tools_description = "\n".join(
             [f"{name}: {tool.description}" for name, tool in self.tools.items()]
         )
-        return f"""You are a helpful AI agent. You can use tools to help with user queries.
-
-Available tools:
-{tools_description}
-
-Respond in the following format:
-Thought: ...
-Action: <tool_name>
-Action Input: <input>
-
-If you are done:
-Final Answer: <your answer>
-"""
+        return SYS_PROMPT.format(tools_description=tools_description)
 
     def run(self, user_input):
         self.memory = Memory()
@@ -44,6 +33,11 @@ Final Answer: <your answer>
                 lines = response.splitlines()
                 action_line = [l for l in lines if l.startswith("Action:")][0]
                 input_line = [l for l in lines if l.startswith("Action Input:")][0]
+
+                print("--------------------------------")
+                print(f"action line: {action_line}")
+                print(f"input line:  {input_line}")
+                print("--------------------------------")
 
                 tool_name = action_line.split("Action:")[1].strip()
                 tool_input = input_line.split("Action Input:")[1].strip()

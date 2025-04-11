@@ -1,9 +1,10 @@
-from openai import OpenAI
 import os
+
+from openai import OpenAI
 
 
 class LLM:
-    def __init__(self, api_key, model="gpt-4"):
+    def __init__(self, api_key, model="gpt-4o-mini"):
         if not api_key:
             print("Warning: No API key provided. Checking environment variable...")
             api_key = os.getenv("OPENAI_API_KEY")
