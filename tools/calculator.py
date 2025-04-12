@@ -10,10 +10,14 @@ class CalculatorInput(BaseModel):
 
 @tool(
     name="calculator",
-    description="Evaluates a mathematical expression like '2 + 3 * (4 - 1)'.",
+    description="Evaluates mathematical expressions",
     input_model=CalculatorInput,
 )
 def calculator_tool(input: CalculatorInput):
+    print(f"Calculator input: {input}, type: {type(input)}")
+    print(
+        f"Calculator input.expression: {input.expression}, type: {type(input.expression)}"
+    )
     try:
         expr = sympify(
             input.expression,

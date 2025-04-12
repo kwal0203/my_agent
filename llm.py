@@ -24,3 +24,11 @@ class LLM:
             model=self.model, messages=messages, temperature=0.7
         )
         return response.choices[0].message.content
+
+    def fn_calling(self, memory, tools):
+        response = self.client.responses.create(
+            model="gpt-4o",
+            input=[{"role": "user", "content": memory[-1]["content"]}],
+            tools=tools,
+        )
+        return response.output[0]
